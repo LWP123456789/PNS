@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <!-- 这里差个logo -->
+    <!-- logo -->
     <div class="login-logo">
       <img src="../assets/眼镜男子.png">
     </div>
@@ -25,6 +25,10 @@
               <el-button @click="resetForm('ruleForm')">重置</el-button>
             </div>
           </el-form-item>
+          <div class="login-to-register">
+            <span>没有账号?</span>
+            <router-link to="/register">注册</router-link>
+          </div>
         </el-form>
       </div>
     </div>
@@ -68,7 +72,10 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            this.$message({
+              message:'登陆成功',
+              type:'success',
+            });
           } else {
             console.log('error submit!!');
             return false;
@@ -88,12 +95,12 @@
     position:absolute;
     top:0px;
     left: 0px;
+    bottom: 0px;
     width: 100%;
     height: 100%;
   }
   .login-logo{
     margin-top: 60px;
-    /* margin-left: 45%; */
     text-align: center;
   }
   .login-title{
@@ -111,5 +118,8 @@
   }
   .login-button{
     text-align: center;
+  }
+  .login-to-register{
+    text-align: right;
   }
 </style>
