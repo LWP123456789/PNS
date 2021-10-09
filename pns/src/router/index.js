@@ -3,6 +3,7 @@ import VueRouter  from "vue-router"
 //引入组件
 import Login from '../pages/Login'
 import Register from '../pages/Register'
+import Home from '../pages/Home'
 
 const router = new VueRouter({
     routes:[
@@ -21,6 +22,12 @@ const router = new VueRouter({
             path:'/register',
             component:Register,
             meta:{title:'注册'}
+        },
+        {
+            name:'zhuye',
+            path:'/home',
+            component:Home,
+            meta:{title:'主页'}
         }
     ]
 })

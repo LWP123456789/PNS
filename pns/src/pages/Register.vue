@@ -15,13 +15,16 @@
                     <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="确认密码" prop="checkPass">
-                    <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+                    <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off" @keyup.enter.native="submitForm('ruleForm')"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <div class="register-button">
                         <el-button type="primary" @click="submitForm('ruleForm')">注册</el-button>
                         <el-button @click="resetForm('ruleForm')">重置</el-button>
                     </div>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="info" icon="el-icon-back" @click="backlogin()">返回登陆界面</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -82,7 +85,11 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        alert('submit!');
+                        this.$message({
+                            message:'注册成功',
+                            type:'success',
+                        });
+                        this.$router.go(-1)
                     } else {
                         console.log('error submit!!');
                         return false;
@@ -91,6 +98,9 @@
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();
+            },
+            backlogin() {
+                this.$router.back()
             }
         }
     }
@@ -110,13 +120,16 @@
         margin-top: 60px;
     }
       .register-main{
+        text-align: center;
         background-color: white;
         margin-top: 40px;
         margin-left: 35%;
         margin-right: 35%;
     }
     .register-form{
-        padding: 10%;
+        padding-top: 10%;
+        padding-right: 20%;
+        padding-bottom: 3%;
     }
     .register-button{
         text-align: center;

@@ -1,41 +1,55 @@
 <template>
   <div class="login">
-    <!-- logo -->
-    <div class="login-logo">
-      <img src="../assets/眼镜男子.png">
-    </div>
-    <!-- 标题 -->
-    <div class="login-title">
-        <h1 align="center">PNS编程导航系统</h1>
-    </div>
-    <!-- 登陆架子 -->
-    <div class="login-main">
-      <div class="login-form">
-        <!-- 表单 -->
-        <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm">
-          <el-form-item prop="username">
-            <el-input type="text" v-model="ruleForm.username" autocomplete="off" placeholder="用户名"></el-input>
-          </el-form-item>
-          <el-form-item prop="pass">
-            <el-input type="password" v-model="ruleForm.pass" autocomplete="off" placeholder="密码"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <div class="login-button">
-              <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-              <el-button @click="resetForm('ruleForm')">重置</el-button>
-            </div>
-          </el-form-item>
-          <div class="login-to-register">
-            <span>没有账号?</span>
-            <router-link to="/register">注册</router-link>
+    <transition
+        appear 
+        name="animate__animated animate__bounce animate__delay-2s"
+        enter-active-class="animate__backInDown"
+    >
+      <div class="login-frame">
+        <!-- logo -->
+        <div class="login-logo">
+          <img src="../assets/眼镜男子.png">
+        </div>
+        <!-- 标题 -->
+        <div class="login-title">
+            <h1 align="center">PNS编程导航系统</h1>
+        </div>
+        <!-- 登陆架子 -->
+        <div class="login-main">
+          <div class="login-form">
+            <!-- 表单 -->
+            <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm">
+              <el-form-item prop="username">
+                <el-input type="text" v-model="ruleForm.username" autocomplete="off" placeholder="用户名"></el-input>
+              </el-form-item>
+              <el-form-item prop="pass">
+                <el-input type="password" v-model="ruleForm.pass" autocomplete="off" placeholder="密码" @keyup.enter.native="submitForm('ruleForm')"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <div class="login-button">
+                  <el-button
+                    type="primary" 
+                    @click="submitForm('ruleForm')"
+                  >
+                    提交
+                  </el-button>
+                  <el-button @click="resetForm('ruleForm')">重置</el-button>
+                </div>
+              </el-form-item>
+              <div class="login-to-register">
+                <span>没有账号?</span>
+                <router-link to="/register">注册</router-link>
+              </div>
+            </el-form>
           </div>
-        </el-form>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
 <script>
+  import 'animate.css'
   export default {
     name: 'Login',
     data() {
@@ -76,6 +90,12 @@
               message:'登陆成功',
               type:'success',
             });
+            this.$router.push({
+              name:'zhuye',
+              params:{
+                ruleForm:this.ruleForm
+              }
+            })
           } else {
             console.log('error submit!!');
             return false;
@@ -84,7 +104,7 @@
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
-      }
+      },
     }
   }
 </script>
