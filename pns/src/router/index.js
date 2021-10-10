@@ -4,6 +4,9 @@ import VueRouter  from "vue-router"
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Home from '../pages/Home'
+import HomeResource from '../pages/HomeResource'
+import Person from '../pages/Person'
+import World from '../pages/World'
 
 const router = new VueRouter({
     routes:[
@@ -27,7 +30,24 @@ const router = new VueRouter({
             name:'zhuye',
             path:'/home',
             component:Home,
-            meta:{title:'主页'}
+            meta:{title:'主页'},
+            children:[
+                {
+                    name:'ziyuan',
+                    path:'resource',
+                    component:HomeResource
+                },
+                {
+                    name:'geren',
+                    path:'person',
+                    component:Person
+                },
+                {
+                    name:'shijie',
+                    path:'world',
+                    component:World
+                }
+            ]
         }
     ]
 })
