@@ -11,7 +11,28 @@
             <el-menu-item index="/home/resource"><i class="el-icon-s-grid"></i>资源</el-menu-item>
             <el-menu-item index="/home/world"><i class="el-icon-position"></i>世界</el-menu-item>
             <el-menu-item index="/home/person"><i class="el-icon-user"></i>个人</el-menu-item>
-            <el-menu-item index="5"><i class=""></i><a href="https://www.baidu.com" target="_blank">站长相关</a></el-menu-item>
+            <el-menu-item index="5"><i class="el-icon-tableware"></i><a href="https://www.baidu.com" target="_blank">站长相关</a></el-menu-item>
+            <el-menu-item>
+              <i class="el-icon-search"></i>
+              <el-select
+                v-model="value"
+                multiple
+                filterable
+                remote
+                reserve-keyword
+                placeholder="请输入关键词"
+                :remote-method="remoteMethod"
+                :loading="loading"
+              >
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                >
+                </el-option>
+              </el-select>
+            </el-menu-item>
           </el-menu>
       </div>
       <div class="home-main">
@@ -26,12 +47,51 @@
         data() {
             return {
                 activeIndex: '1',
+                options:[],
+                value:[],
+                list:[],
+                loading:false,
+                states: ["Alabama", "Alaska", "Arizona",
+                        "Arkansas", "California", "Colorado",
+                        "Connecticut", "Delaware", "Florida",
+                        "Georgia", "Hawaii", "Idaho", "Illinois",
+                        "Indiana", "Iowa", "Kansas", "Kentucky",
+                        "Louisiana", "Maine", "Maryland",
+                        "Massachusetts", "Michigan", "Minnesota",
+                        "Mississippi", "Missouri", "Montana",
+                        "Nebraska", "Nevada", "New Hampshire",
+                        "New Jersey", "New Mexico", "New York",
+                        "North Carolina", "North Dakota", "Ohio",
+                        "Oklahoma", "Oregon", "Pennsylvania",
+                        "Rhode Island", "South Carolina",
+                        "South Dakota", "Tennessee", "Texas",
+                        "Utah", "Vermont", "Virginia",
+                        "Washington", "West Virginia", "Wisconsin",
+                        "Wyoming"]
             }
+        },
+        mounted() {
+          this.list = this.states.map(item => {
+            return { value: `value:${item}`,label:`label:${item}` };
+          });
         },
         methods: {
             handleSelect(key, keyPath) {
             console.log(key, keyPath);
-      }
+            },
+            remoteMethod(query)  {
+              if (query !== '') {
+                this.loading = true;
+                setTimeout(() => {
+                  this.loading = false;
+                  this.options = this.list.filter(item => {
+                    return item.label.toLowerCase().indexOf(query.toLowerCase()) > -1;
+                  })
+                },200);
+              }else{
+                this.options = [];
+              }
+            } 
         }
     }
 </script>
