@@ -2,3 +2,4 @@
 2.最后一个input框敲回车时应通过键盘事件实现提交功能 
 已完成,通过@keyup.enter.native方法,注意添加.native监听
 3.实现不了加载功能,loading
+4.注册按钮样式未实现

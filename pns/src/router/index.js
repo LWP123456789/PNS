@@ -7,6 +7,7 @@ import Home from '../pages/Home'
 import HomeResource from '../pages/HomeResource'
 import Person from '../pages/Person'
 import World from '../pages/World'
+import WishWall from '../pages/WishWall'
 
 const router = new VueRouter({
     routes:[
@@ -45,7 +46,14 @@ const router = new VueRouter({
                 {
                     name:'shijie',
                     path:'world',
-                    component:World
+                    component:World,
+                    children:[
+                        {
+                            name:'xinyuanqiang',
+                            path:'wish',
+                            component:WishWall
+                        }
+                    ]
                 }
             ]
         }
