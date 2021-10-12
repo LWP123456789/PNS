@@ -44,8 +44,4 @@
         width: 100%;
         height: 100%;
     }
-    .el-aside{
-        background-color: #ffffff;
-    }
-    
 </style>
