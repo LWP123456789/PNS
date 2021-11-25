@@ -2,21 +2,19 @@
   <div class="home">
       <!-- 全局菜单 -->
       <div class="menu-main">
-          <el-row class="menu-main-navigation">
-              <el-col :span="12">
                 <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" router>
-                  <el-menu-item index="/home">
+                  <el-menu-item index="/home/homepage">
                       <img src="../assets/分享.png" height="40" width="60">
                       <span> 编程导航</span>
                   </el-menu-item>
                   <el-menu-item index="/home/resource"><i class="el-icon-s-grid"></i>资源</el-menu-item>
                   <el-menu-item index="/home/world"><i class="el-icon-position"></i>世界</el-menu-item>
                   <el-menu-item index="/home/person"><i class="el-icon-user"></i>个人</el-menu-item>
-                  <el-menu-item index="5"><i class="el-icon-tableware"></i><a href="https://www.baidu.com" target="_blank">站长相关</a></el-menu-item>
-                </el-menu>
-              </el-col>
-              <el-col :span="12">
-                  <el-menu mode="horizontal">
+                  <el-submenu index="5">
+                    <template slot="title"><i class="el-icon-tableware"></i>站长相关</template>
+                    <el-menu-item><a href="https://www.lep101.top" target="_blank">LWPのBlog</a></el-menu-item>
+                    <el-menu-item><a href="https://blog.weiyuexin.top" target="_blank">WYXのBlog</a></el-menu-item>
+                  </el-submenu>
                     <el-menu-item index="6">
                     <i class="el-icon-search"></i>
                     <el-select
@@ -42,8 +40,6 @@
                     <el-avatar :size="50" :src="circleUrl"></el-avatar>
                   </el-menu-item>
                   </el-menu>
-              </el-col>
-          </el-row>
       </div>
       <div class="home-main">
           <router-view></router-view>

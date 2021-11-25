@@ -4,6 +4,7 @@ import VueRouter  from "vue-router"
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Home from '../pages/Home'
+import HomePage from '../pages/HomePage'
 import HomeResource from '../pages/HomeResource'
 import Person from '../pages/Person'
 import World from '../pages/World'
@@ -34,6 +35,11 @@ const router = new VueRouter({
             component:Home,
             meta:{title:'主页'},
             children:[
+                {
+                    name:'shouye',
+                    path:'homepage',
+                    component:HomePage
+                },
                 {
                     name:'ziyuan',
                     path:'resource',
@@ -67,5 +73,13 @@ const router = new VueRouter({
         }
     ]
 })
+
+
+// router.beforeEach((to,from,next) => {
+//     const token = localStorage.getItem('token')
+//     //验证有无token
+//     if(to.name !== 'denglu' && !token) next({ name : 'denglu'})
+//     else next() //放心
+// })
 
 export default router
